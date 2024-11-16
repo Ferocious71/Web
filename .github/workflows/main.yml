@@ -29,4 +29,14 @@ jobs:
         source: ./
         target: /home/ubuntu
 
+    - name: COPY files from /home/ubuntu to /var/www/html
+      uses: appleboy/ssh-action@v1.1.0
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          sudo cp -rf /home/ubuntu/* /var/www/html
+
       
